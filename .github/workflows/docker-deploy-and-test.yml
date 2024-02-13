@@ -5,24 +5,18 @@ on:
     branches:
       - main
   schedule:
-    # Use POSIX cron syntax to schedule your workflow.
-    # This example runs at 10 AM GMT (UTC) every day.
-    # Cron format: <minute> <hour> <day-of-month> <month> <day-of-week>
     - cron: '0 10 * * *'
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Check Out Repo
-      uses: actions/checkout@v2
-      
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v1
+    - uses: actions/checkout@v2
+    - uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        
+    
     - name: Build and Push Docker image
       run: |
         docker build -t scab1001/flask-app:latest .
@@ -30,35 +24,28 @@ jobs:
       env:
         DOCKER_BUILDKIT: 1
 
-    # Optionally, you can also start the Docker container here
-    # and expose it on a specific port if your tests require
-    # interacting with a live instance
 
   run_unit_tests:
     needs: build_and_deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Check Out Repo
-      uses: actions/checkout@v2
-
+    - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'  # Adjust this as necessary
-
+        python-version: '3.8'
+        
     - name: Upgrade pip
       run: python -m pip install --upgrade pip
-
+    
     - name: Install dependencies
       run: pip install -r requirements.txt
-
-    - name: Run unit test and echo output
-      run: python -m unittest www/test.py 2>&1 | tee test_results.txt
-          
-    - name: Upload test results
-      uses: actions/upload-artifact@v2
+    
+    - name: Run unit tests and echo output
+      run: |
+        cd www  # Change to the directory containing test.py if necessary
+        python -m unittest discover . 2>&1 | tee test_results.txt
+    - uses: actions/upload-artifact@v2
       with:
         name: unittest-results
         path: test_results.txt
-
-
