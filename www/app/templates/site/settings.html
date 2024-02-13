@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="heading-container" role="region" aria-labelledby="settings-heading">
+    <section class="user-guide" aria-label="Guide to Account Settings">
+        <ol class="guide-steps">
+            <li>
+                <h2 id="settings-heading">Settings</h2>
+                <p>Customise on your own terms.</p>
+            </li>
+            <section class="cta" aria-label="Call to Action">
+                <form action="{{ url_for('views.delete_account') }}" method="POST" role="form" aria-label="Delete Account Form">
+                    <button type="submit" class="btn btn-danger" aria-label="Submit Account Deletion">Delete My Account</button>
+                </form>
+            </section>
+        </ol>
+    </section>
+</div>
+{% endblock %}

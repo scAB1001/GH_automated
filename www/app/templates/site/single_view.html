@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cards.css') }}">
+</head>
+
+<div class="heading-container" role="main">
+    <div class="detail-container" role="region" aria-labelledby="car-detail-heading">
+        <!-- Picture frame container -->
+        <div class="frame-container" role="img" aria-label="Picture frame with car image">
+            <!-- Picture frame -->
+            <img class="frame" src="{{ url_for('static', filename='icons/frame.png') }}" alt="Antique Picture Frame">
+            <!-- Car image -->
+            <img class="car-image" src="{{ url_for('static', filename='cars/' ~ car['imageUrl'] ~ '.jpg') }}"
+                alt="{{ car['carName'] }}">
+        </div>
+
+        <div class="single-card-container">
+            <article class="single-card" id="cardInfo" aria-labelledby="car-detail-heading">
+                <h2 id="car-detail-heading">Car Details</h2>
+                <p><strong>Make: </strong>{{ car['make'] }}</p>
+                <p><strong>Model: </strong>{{ car['model'] }}</p>
+                <p><strong>Year: </strong>{{ car['year'] }}</p>
+                <p><strong>Body Type: </strong>{{ car['body_type'] }}</p>
+                <p><strong>Horsepower: </strong>{{ car['horsepower'] }} bhp</p>
+                <p><strong>Monthly Fee: </strong>£{{ car['monthly_payment'] }}</p>
+                <p><strong>Mileage: </strong>{{ car['mileage'] }}</p>
+                <footer class="card-footer">
+                    <button class="animated-button" role="button" aria-label="Contact Owner">Contact Owner</button>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
