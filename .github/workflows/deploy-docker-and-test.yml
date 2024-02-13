@@ -1,4 +1,4 @@
-name: Docker Deploy and Run Tests
+name: Deploy Docker and Run Tests
 
 on:
   push:
@@ -43,7 +43,7 @@ jobs:
     
     - name: Run unit tests and echo output
       run: |
-        python -m unittest /www/test.py 2>&1 | tee test_results.txt
+        python -m unittest discover -s www 2>&1 | tee test_results.txt
     - uses: actions/upload-artifact@v2
       with:
         name: unittest-results
