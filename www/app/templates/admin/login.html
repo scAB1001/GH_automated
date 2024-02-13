@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="heading-container" role="region" aria-labelledby="signin-heading">
+    <section class="user-guide" aria-label="Guide to Account Access">
+        <ol class="guide-steps">
+            <li role="article">
+                <h3 id="signin-heading">Sign In</h3>
+                <p>Sign in to use AutoSwipe</p>
+            </li>
+        </ol>
+    </section>
+
+    <form method="POST" class="form-signin" role="form" aria-label="Sign In Form">
+        {{ form.hidden_tag() }}
+        <div class="form-group" aria-label="emailHelpBlock">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-control") }}
+            {% if form.email.errors %}
+            <div class="error" id="emailHelpBlock" role="alert">{{ form.email.errors[0] }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group" aria-label="passwordHelpBlock">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            {% if form.password.errors %}
+            <div class="error" id="passwordHelpBlock" role="alert">{{ form.password.errors[0] }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="cta-button btn-form" aria-label="Submit Sign In">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
