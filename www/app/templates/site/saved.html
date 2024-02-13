@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cards.css') }}">
+</head>
+
+<div class="heading-container" role="main">
+    <section class="user-guide" aria-label="Guide to Reviewing Favourites">
+        <ol class="guide-steps" id="Guide to Reviewing Favourites">
+            <li role="article" aria-labelledby="review-favourites-heading">
+                <h2 id="review-favourites-heading">Review Your Favourites and Get In Touch</h2>
+                <p>Scroll down and click to see more details.</p>
+            </li>
+        </ol>
+    </section>
+
+    {% if liked_exist %}
+    <div class="scrollable-table" role="region" aria-live="polite" aria-label="Favourites List">
+        <main class="grid" aria-label="List of Favourite Cars">
+            <article>
+                {% for car in liked_cars %}
+                <img class="full-view" src="{{ url_for('static', filename='cars/' ~ car['imageUrl'] ~ '.jpg') }}"
+                    alt="{{ car['carName'] }}" role="img" aria-label="Image of {{ car['carName'] }}">
+
+                <div class="grid-text">
+                    <h2>
+                        <a href="/saved/single-view/{{ car['carID'] }}" class="cta-button btn-grid" role="link"
+                            aria-label="View details of {{ car['carName'] }}">
+                            {{ car['carName'] }}
+                        </a>
+                    </h2>
+                    <a class="cta-button like-button btn-grid" data-car-id="{{ car['carID'] }}" data-liked="false" role="button"
+                        aria-label="View details">
+                        <img src="{{ url_for('static', filename='icons/heart.png') }}" alt="Like" class="like-img">
+                    </a>
+                    <span class="like-count" data-car-id="{{ car['carID'] }}">{{ car['like_count'] }}</span> likes
+                </div>
+
+                {% endfor %}
+            </article>
+        </main>
+    </div>
+    {% else %}
+    <h2 id="no-favourites-message">You haven't liked anything! Go explore our range.</h2>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='ajax.js') }}"></script>
+</div>
+{% endblock %}

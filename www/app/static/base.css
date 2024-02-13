@@ -1,0 +1,424 @@
+/* Define color palette with high contrast and color-blind friendly colors */
+:root {
+    --background-default: #374f2f;
+    --struct-default: #412E25;
+    --text-default: #F2F4F3;
+    --accent-default: #5A2E0C;
+    --accent-section: #353B30;
+    --accent-flash: #8A3906;
+    --accent-flash2: #175616;
+    --accent-warning: #CDA43C;
+    --accent-danger: #b20000;
+    --border-default: solid 3px black;
+    --font-family-thick: 'Robot Serif', monospace;
+    --font-family-mono: 'Courier New', monospace;
+    --font-size-text: 16px;
+    --font-size-logo-text: 18px;
+    --font-size-h2: 20px;
+    --font-size-h1: 22px;
+    --font-size-button: 18px;
+    --struct-subtle-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* General styles for high contrast and readability */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--background-default);
+    color: var(--text-default);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-text);
+    /* If the line-height is greater than the font-size,
+        it creates additional space above and below the text,
+        making blocks of text easier to read. */
+    line-height: 1.6;
+    border: var(--border-default);
+    border-bottom: none;
+    width: 100vw;
+    height: 100vh;
+    /* Ensure that elements with padding and borders 
+        will not unexpectedly overflow their containers. */
+    box-sizing: border-box;
+    /* Allows scroll if content overflows vertically */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.navbar {
+    border-bottom: var(--border-default);
+    background: var(--struct-default);
+    font-size: var(--font-size-h1);
+    font-family: var(--font-family-thick);
+    padding: 0;
+}
+
+main {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+#logo {
+    font-size: var(--font-size-h1);
+}
+
+.logo-heading {
+    font-size: var(--font-size-logo-text);
+    margin: 0;
+    padding: 0.5rem;
+
+}
+
+.nav-link {
+    color: var(--text-default);
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea,
+article {
+    font-size: var(--font-size-text);
+    color: var(--text-default);
+    background: var(--struct-default);
+    /* Ensuring visible borders */
+    border: 2px solid var(--text-default);
+}
+
+/* Ensure buttons have a high contrast for accessibility */
+button {
+    background: var(--accent-default);
+    color: white;
+    padding: 10px 20px;
+    font-size: var(--font-size-h1);
+    border: none;
+    cursor: pointer;
+}
+
+/* Accessibility improvements for visual focus on interactive elements */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 3px solid var(--accent-default);
+    outline-offset: 2px;
+}
+
+/* Responsive design for screen readers and other assistive technologies */
+@media screen and (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Container for the heading and explanatory boxes */
+.heading-container {
+    display: inline-block;
+    text-align: center;
+}
+
+/* Container for the heading and explanatory boxes */
+.mention-container {
+    margin-top: 1rem;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Styles for the rounded box behind the heading */
+.rounded-box {
+    margin-top: 0.5rem;
+    background-color: var(--accent-default);
+    border-radius: 15px;
+    padding: 0.75rem 1.5rem;
+    display: inline-block;
+    /* Space between the heading box and explanatory box */
+    margin-bottom: 2rem;
+}
+
+/* Heading styles for proper spacing and readability */
+.heading {
+    /* Responsive font size */
+    font-size: calc(1.5rem + 1vw);
+    color: var(--text-default);
+    font-family: var(--font-family-thick);
+}
+
+h2 {
+    /* Responsive font size */
+    font-size: var(--font-size-h2);
+    color: var(--text-default);
+    font-family: var(--font-family-thick);
+}
+
+/* Styles for the explanatory box */
+.explanatory-box {
+    background-color: var(--accent-section);
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    margin: 0 auto;
+    width: 80%;
+    box-shadow: var(--struct-subtle-shadow);
+    /* Responsive font size */
+    font-size: calc(1rem + 0.5vw);
+}
+
+/* Ensure the content is always centered and responsive */
+@media (min-width: 768px) {
+    .heading-container {
+        width: 50%;
+        margin: 1rem auto;
+    }
+}
+
+/* Accessibility considerations */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none;
+        transition: none;
+    }
+}
+
+.user-guide {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 10px;
+    background: var(--struct-default);
+    box-shadow: var(--struct-subtle-shadow);
+    margin-bottom: 0.75rem;
+}
+
+.user-guide h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.guide-steps {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+
+.guide-steps li {
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background: var(--accent-section);
+    box-shadow: var(--struct-subtle-shadow);
+}
+
+.guide-steps h3 {
+    font-family: var(--font-family-thick);
+    font-size: var(--font-size-h2);
+    margin-top: 0;
+}
+
+.guide-steps p {
+    margin-bottom: 0;
+}
+
+.cta {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: var(--font-size-button);
+}
+
+.cta-button,
+.btn {
+    font-size: var(--font-size-button);
+    background: var(--text-default);
+    color: var(--struct-default);
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: var(--struct-subtle-shadow);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Ensure that the like button only affects its content */
+.like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    /* Use flex to center image inside the button */
+    align-items: center;
+    justify-content: center;
+}
+
+.like-img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+/* Style changes when hovering over the like button */
+.like-button:hover .like-img {
+    transform: scale(1.1);
+}
+
+/* The like-count class is used to style the number of likes */
+.like-count {
+    font-size: var(--font-size-button);
+    /* Align the text with the buttons */
+    align-self: center;
+}
+
+.warning {
+    background: var(--accent-warning);
+    color: black;
+}
+
+.btn-danger {
+    background: var(--accent-danger);
+    color: white;
+    padding: 0.75rem 1.5rem;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    transform: scale(1.05);
+    color: var(--text-default);
+    background: var(--accent-default);
+}
+
+/* Keyframes for the slide- in/out animation */
+@keyframes slideIn {
+    from {
+        /* Start from off-screen */
+        bottom: -100px;
+        opacity: 0;
+    }
+
+    to {
+        /* End at visible position */
+        bottom: 50px;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        bottom: 20px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: -100px;
+        opacity: 0;
+    }
+}
+
+.form-signin,
+.form-signup {
+    max-width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--struct-default);
+    box-shadow: var(--border-default);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    color: var(--text-default);
+    font-family: var(--font-family-thick);
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: var(--font-size-text);
+    font-family: var(--font-family-mono);
+}
+
+.btn-form {
+    color: black;
+}
+
+.form-control:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+.flashes {
+    /* Initial off-screen position */
+    bottom: -100px;
+    left: 50%;
+    position: fixed;
+    font-size: 18px;
+    transform: translateX(-50%);
+    background: var(--accent-flash);
+    color: var(--text-default);
+    padding: 18px 32px;
+    border-radius: 16px;
+    box-shadow: var(--struct-subtle-shadow);
+    border: var(--border-default);
+    opacity: 0;
+    /* Above other elements */
+    z-index: 1001;
+    animation:
+        slideIn 1.75s ease forwards,
+        slideOut 2.75s ease forwards 3s;
+}
+
+.scrollable-table2 {
+    max-height: 500px;
+    border: 2px solid #0c0101;
+    overflow-y: auto;
+    box-shadow: 10px 10px 16px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Error Pages */
+.error-page {
+    height: 80%;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.error-page h1 {
+    font-size: 5rem;
+    color: var(--text-default);
+    font-size: var(--font-size-h1);
+    font-family: var(--font-family-thick);
+}
+
+.error-page h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-size: var(--font-size-h2);
+    font-family: var(--font-family-thick);
+}
+
+.error-page p {
+    padding-top: 10%;
+    font-size: 1.2rem;
+    color: var(--text-default);
+    margin-bottom: 1rem;
+}

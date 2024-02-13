@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="heading-container" role="main">
+    <div class="rounded-box" role="region" aria-labelledby="error-heading">
+        <h1 class="heading" id="error-heading">500</h1>
+        <p>There was a problem on our end. Please try again later.</p>
+    </div>
+
+    <section class="user-guide" aria-label="Error Guidance">
+        <ol class="guide-steps">
+            <li role="article" aria-labelledby="go-back-heading">
+                <h2 id="go-back-heading">Go Back</h2>
+                <p>Return to the homepage and try again!</p>
+            </li>
+        </ol>
+    </section>
+    
+</div>
+    
+<section class="cta" aria-label="Call to Action">
+    <a href="/" class="cta-button" role="button" aria-label="Go back to Home">Go Home</a>
+</section>
+
+{% endblock %}
