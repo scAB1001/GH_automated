@@ -43,8 +43,7 @@ jobs:
     
     - name: Run unit tests and echo output
       run: |
-        cd www/
-        python -m unittest discover . 2>&1 | tee test_results.txt
+        python -m unittest /www/test.py 2>&1 | tee test_results.txt
     - uses: actions/upload-artifact@v2
       with:
         name: unittest-results
