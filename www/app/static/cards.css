@@ -1,0 +1,297 @@
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.card-container {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Card-swipe Container */
+#swiper {
+    height: 70vh;
+    aspect-ratio: 2 / 3;
+    perspective: 1000px;
+    perspective-origin: center 50%;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    transform:
+            translateX(calc(8px * var(--i))) 
+            translateY(calc(-3px * var(--i))) 
+            translateZ(calc(-15px * var(--i)));
+    cursor: grabbing;
+    filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, 0.5));
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.5s;
+}
+
+/* You might need to adjust the height of .card img to make room for .card-info */
+.card img {
+    width: 100%;
+    height: calc(100% - 50px);
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+#like,
+#dislike {
+    font-size: 16vh;
+    border-radius: 50%;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    animation-name: fade-in-out;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    /* don't run animation at the beginning */
+    animation-play-state: paused;
+}
+
+#like.trigger,
+#dislike.trigger {
+    animation-name: fade-in-out2;
+}
+
+#like {
+    color: red;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#dislike {
+    color: #ccc;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fade-in-out {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    70% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-out2 {
+
+    0%,
+    100% {
+        opacity: 0.2;
+    }
+
+    70% {
+        opacity: 1;
+    }
+}
+
+.card-info {
+    bottom: 0;
+    padding-top: 1%;
+    width: 100%;
+    height: 16%;
+    color: white;
+    font-size: 18px;
+    font-style: italic;
+    position: absolute;
+    align-items: center;
+    /* This will preserve spaces and line breaks, and wrap text */
+    white-space: pre-wrap;
+    background: rgba(33, 28, 28);
+}
+
+.card-info>div {
+    margin-bottom: 5px;
+}
+
+.card-info span {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.card-info p {
+    text-align: left;
+    font-size: 15px;
+    padding-left: 5%;
+    margin-bottom: 5px;
+    font-style: normal;
+}
+
+#no-more-cards-message h1 {
+    text-align: center;
+    place-items: center;
+    padding-top: 15%;
+}
+
+/* Grid styles */
+.grid {
+    display: flex;
+    flex-direction: column;
+    /* Stack children vertically */
+    align-items: center;
+    /* Center children horizontally */
+    overflow: hidden;
+    /* Prevents children from overflowing */
+}
+
+.grid>article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    /* Prevents .grid-text from overflowing */
+}
+
+.grid>article img {
+    max-width: 100%;
+    display: block;
+}
+
+.grid-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.5rem auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.grid-text h2 {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+article {
+    border: none;
+}
+
+.scrollable-table {
+    margin: 1rem auto;
+    max-height: 500px;
+    border: 4px solid black;
+    overflow-y: auto;
+    box-shadow: 10px 10px 16px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button {
+    color: black
+}
+
+/* Single view styles */
+.detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+/* Container for the frame and the car image */
+.frame-container {
+    flex: none;
+    /* Set maximum dimensions for the frame 
+    against the details section */
+    width: 95%;
+    height: 95%;
+    position: relative;
+    margin: auto;
+}
+
+/* Style for the frame itself */
+.frame {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Style for the car image */
+.car-image {
+    position: absolute;
+    /* Center horizontally & vertically */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    /* Keep the aspect ratio of the car image */
+    height: auto;
+}
+
+.single-card-container {
+    cursor: pointer;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.single-card {
+    border-radius: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    margin: 20px auto;
+    border-left: 5px solid rgb(114, 61, 4);
+    text-align: left;
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.animated-button {
+    position: relative;
+    padding: 20px 40px;
+    margin: 12px;
+    background: linear-gradient(-30deg, #b06ab3 50%, #4568dc 50%);
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2.5px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.animated-button:hover {
+    background: linear-gradient(-30deg, #4568dc 50%, #b06ab3 50%);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.animated-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #b06ab3;
+}
+
+.animated-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+}
+
