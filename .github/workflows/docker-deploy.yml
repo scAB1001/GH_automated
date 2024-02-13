@@ -1,0 +1,31 @@
+name: Build and Deploy Docker Image
+
+on:
+  push:
+    branches:
+      - main  # Adjust if you're using a different branch for deployments
+
+jobs:
+  build_and_run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check Out Repo
+      uses: actions/checkout@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+    - name: Build and Push Docker image
+      run: |
+        docker build -t scab1001/flask-app:latest .
+        docker push scab1001/flask-app:latest
+      env:
+        DOCKER_BUILDKIT: 1
+
+    # Optional: Run the Docker container on a VM or Deploy to a service
+    - name: Run Docker Container
+      run: docker run -d -p 5000:5000 yourusername/flask-app:latest
