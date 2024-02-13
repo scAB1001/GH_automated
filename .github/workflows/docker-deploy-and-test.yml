@@ -3,7 +3,12 @@ name: Docker Deploy and Run Tests
 on:
   push:
     branches:
-      - main  # Adjust this as necessary for your workflow
+      - main
+  schedule:
+    # Use POSIX cron syntax to schedule your workflow.
+    # This example runs at 10 AM GMT (UTC) every day.
+    # Cron format: <minute> <hour> <day-of-month> <month> <day-of-week>
+    - cron: '0 10 * * *'
 
 jobs:
   build_and_deploy:
